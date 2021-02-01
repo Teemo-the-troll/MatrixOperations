@@ -4,6 +4,7 @@ public interface IMatrix {
 
     /**
      * Multiplies the two matrices together and returns the resulting matrix.
+     *
      * @param matrix
      * @return Multiplied matrix
      */
@@ -11,6 +12,7 @@ public interface IMatrix {
 
     /**
      * Multiplies the matrix with a number.
+     *
      * @param scalar
      * @return Scalar times "larger" matrix
      */
@@ -18,25 +20,38 @@ public interface IMatrix {
 
     /**
      * Adds two matrices
-     * @param matrix
+     *
+     * @param matrix-IMatrix
      * @return sum of the two matrices
      */
     IMatrix add(IMatrix matrix);
 
     /**
      * Transposes the matrix (flips rows and columns)
+     *
      * @return flipped matrix
      */
     IMatrix transpose();
 
+
+    /**
+     * Checks if the format of the matrix is plausible to multiply it
+     *
+     * @return boolean
+     */
+    boolean checkFormat(IMatrix matrix);
+
     /**
      * Calculates the determinant, https://en.wikipedia.org/wiki/Determinant
      * https://matematika.cz/determinanty
+     *
      * @return
      */
     double determinant();
 
     /**
+     * returns the amount of rows in Matrix
+     *
      * @return rows
      */
     int getRows();
@@ -45,6 +60,7 @@ public interface IMatrix {
      * @return columns
      */
     int getColumns();
+
 
     /**
      * @param n

@@ -1,10 +1,10 @@
 package cz.educanet.tranformations;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class MatrixTest {
 
@@ -12,6 +12,7 @@ public class MatrixTest {
     private IMatrix b;
     private IMatrix c;
     private IMatrix d;
+    private IMatrix e;
     private IMatrix empty;
 
     @Before
@@ -42,6 +43,14 @@ public class MatrixTest {
                 {1, 1}
         };
         d = MatrixFactory.create(rawD);
+
+        double[][] rawE = {
+                {1, 2},
+                {3, 4},
+                {5, 6},
+        };
+        e = MatrixFactory.create(rawE);
+
     }
 
     @Test
@@ -63,6 +72,21 @@ public class MatrixTest {
 
     @Test
     public void times() {
+
+
+        double[][] expectedAtimesE = {
+                {9, 12},
+                {9, 12}
+        };
+
+        double[][] expectedEtimesA = {
+                {3, 3, 3},
+                {7, 7, 7},
+                {11, 11, 11}
+        };
+
+        assert (MatrixFactory.create(expectedAtimesE).equals(a.times(e)));
+        assert (MatrixFactory.create(expectedEtimesA).equals(e.times(a)));
     }
 
     @Test
@@ -71,14 +95,28 @@ public class MatrixTest {
 
     @Test
     public void add() {
+        double[][] expectedAplusB = null;
+        double[][] expectedBplusC = {
+                {2, 1, 1},
+                {1, 2, 1},
+                {0, 0, 1}
+        };
+        assertNull(a.add(b));
+        assert(b.add(c).equals(MatrixFactory.create(expectedBplusC)));
     }
 
     @Test
     public void get() {
+        assertEquals(4, e.get(1,1), 0);
     }
 
     @Test
     public void transpose() {
+        double[][] expected = {
+                {1, 3, 5},
+                {2, 4, 6}
+        };
+        assert (e.transpose().equals(MatrixFactory.create(expected)));
     }
 
     @Test
